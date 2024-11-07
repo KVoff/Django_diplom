@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Deletion</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="form-container">
+    <h1>Приветствую</h1>
+    <p>Вы можете использовать ссылки для перехода</p>
+
+    <a href="{% url 'buyer_list' %}" class="button-link">Покупатели</a>
+    <a href="{% url 'product_list' %}" class="button-link">Товары</a>
+    <a href="{% url 'order_list' %}" class="button-link">Заказы</a>
+
+</div>
+</body>
+</html>
