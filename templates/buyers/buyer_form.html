@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if buyer %}Update Buyer{% else %}Create Buyer{% endif %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="form-container">
+    <h1>{% if buyer %}Редактировать{% else %}Создать{% endif %}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div>
+            <label for="id_first_name">Имя:</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+                <div class="error">{{ form.first_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_last_name">Фамилия:</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+                <div class="error">{{ form.last_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_date_of_birth">Дата рождения:</label>
+            {{ form.date_of_birth }}
+            {% if form.date_of_birth.errors %}
+                <div class="error">{{ form.date_of_birth.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_special_notes">Заметки:</label>
+            {{ form.special_notes }}
+            {% if form.special_notes.errors %}
+                <div class="error">{{ form.special_notes.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_phone_number">Телефон:</label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+                <div class="error">{{ form.phone_number.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_email">Почта:</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_addresses">Адреса:</label>
+            {{ form.addresses }}
+            {% if form.addresses.errors %}
+                <div class="error">{{ form.addresses.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'buyer_list' %}" class="back-button">К списку
+        покупателей</a>
+</div>
+</body>
+</html>

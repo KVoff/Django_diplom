@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Detail</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="detail-container">
+    <h1>{{ buyer.first_name }} {{ buyer.last_name }}</h1>
+
+    <table class="detail-table">
+        <tr>
+            <td class="label">Дата рождения:</td>
+            <td>{{ buyer.date_of_birth }}</td>
+        </tr>
+        <tr>
+
+            <td class="label">Заметки:</td>
+            <td>{{ buyer.special_notes }}</td>
+        </tr>
+        <tr>
+            <td class="label">Телефон:</td>
+            <td>{{ buyer.phone_number }}</td>
+        </tr>
+        <tr>
+            <td class="label">Почта:</td>
+            <td>{{ buyer.email }}</td>
+        </tr>
+        <tr>
+            <td class="label">Адреса:</td>
+            <td>
+                <ul>
+                    {% for address in buyer.addresses.all %}
+                        <li>{{ address.street }}, {{ address.house_number }}</li>
+                    {% empty %}
+                        <li>No addresses available.</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <div class="button-group">
+        <a href="{% url 'buyer_update' buyer.id %}"
+           class="button-link">Редактировать</a>
+        <form action="{% url 'buyer_delete' buyer.id %}"
+              method="GET"
+              style="display:inline;">
+            <button type="submit" class="delete-button">Удалить</button>
+        </form>
+        <a href="{% url 'buyer_list' %}" class="button-link">назад к списку
+            покупателей
+        </a>
+    </div>
+</div>
+</body>
+</html>
